@@ -1,6 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&family=Montserrat:ital,wght@1,200&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&family=Montserrat&display=swap');
 
 *{
     padding: 0;
@@ -9,5 +8,55 @@
 }
 
 body{
-    font-family: 'Montserrat', sans-serif;;
+    font-family: 'Montserrat', sans-serif;
+    overflow: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#sfondo{
+    position: relative;
+}
+
+.container{
+    width: 500px;
+    height: 300px;
+    position: absolute;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    opacity: 0.5;
+}
+.box{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.navBar{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.boxButton{
+    width: 100%;
+    height: 100%;
+    display: inline;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.boxButton button{
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
 }
