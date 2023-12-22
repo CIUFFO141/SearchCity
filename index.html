@@ -8,18 +8,16 @@
     <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
 </head>
 <body>
-    <img id="sfondo" src="/img/sfondo.jpg" alt="" width="100%" height="100%">
-    <div class="container">
-        <div class="box">
-            <div class="navBar"><input type="text" value="Inserisci nome di Città"></div>
-            <div class="boxButton">
-                <div class="enter"><button><img src="img/search.png" ></button></div>
-                <div class="stop"><button><img src="img/home.png"></button></div>
-                <div class="cancel"><button><img src="img/cancel.png" ></button></div>
+        <div class="container">
+            <div class="box">
+                <div class="navBar"><input type="text" value="Inserisci nome di Città" onfocus="if(this.value==this.defaultValue)this.value=''"></div>
+                <div class="boxButton">
+                    <div class="enter"><button><img src="img/search.png" ></button></div>
+                    <div class="stop"><button><img src="img/home.png"></button></div>
+                    <div class="cancel"><button><img src="img/cancel.png" ></button></div>
+                </div>
             </div>
         </div>
-    </div>
-
     <script src="js/main.js"></script>
 </body>
 </html>

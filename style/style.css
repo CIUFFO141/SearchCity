@@ -9,21 +9,22 @@
 
 body{
     font-family: 'Montserrat', sans-serif;
-    overflow: none;
+    background-image: url(/img/sfondo.jpg);
+    background-repeat: no-repeat;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow-y: hidden;
-}
-
-#sfondo{
-    position: relative;
 }
 
 .container{
     width: 300px;
     height: 180px;
-    position: absolute;
     border-radius: 2rem;
     display: flex;
     justify-content: center;
