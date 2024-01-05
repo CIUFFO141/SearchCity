@@ -11,7 +11,6 @@ body{
     font-family: 'Montserrat', sans-serif;
     background-image: url(/img/sfondo.jpg);
     background-repeat: no-repeat;
-    background-repeat: no-repeat;
     background-position: 0 0;
     -moz-background-size: cover;
     -webkit-background-size: cover;
@@ -20,19 +19,22 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .container{
-    width: 500px;
-    height: 80px;
-    border-radius: 2rem;
+    width: 450px;
+    height: 40px;
+    border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #F9FBE7;
-    opacity: 0.8;
+    background-color: white;
+    opacity: 0.9;
     box-shadow: 3px 3px 3px black
 }
+
 .box{
     display: flex;
     justify-content: center;
@@ -51,7 +53,7 @@ body{
 }
 .navBar input{
     border: 1px solid black;
-    border-radius: 1rem;
+    border-radius: 8px;
     width: 300px;
     height: 30px;
     padding-left: 10px;
@@ -78,3 +80,46 @@ body{
     box-shadow: 1px 1px 3px black;
     background-color: lightgray;
 }
+
+.containerCity{
+    height: fit-content;
+    width: 800px;
+    background-color: white;
+    opacity: 1.0;
+    border-radius: 8px;
+    box-shadow: 3px 3px 3px black;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 3px;
+    
+}
+
+.containerTot{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.containerCity img{
+    height: fit-content;
+    width: 200px;
+    border-radius: 8px;
+}
+
+.contcity{
+    height: fit-content;
+}
+
+.contimg{
+    height: fit-content;
+}
+
+.contText{
+    
+    height: fit-content;
+}
+
+
+
