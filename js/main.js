@@ -58,21 +58,24 @@ function createBox(){
     
     const body = document.querySelector('body');
     
-    const container = document.getElementById('containerCity');
+    const container = document.createElement('div');
     const containerTot = document.createElement('div')
-    const contImg = document.createElement('div');
-    const img = document.createElement('img');                                       
     const contCity = document.createElement('div');
     const city = document.createElement('h1');
+    const contImg = document.createElement('div');
+    const img = document.createElement('img');                                       
     const coordinate = document.createElement('div');
     const coolati = document.createElement('p');
     const coolongi= document.createElement('p');
     const totscore = document.createElement('p')
     const contBar = document.createElement('div');
-    const Progress = document.createElement('div');
-    const ProgressBar = document.createElement('div')
+    const barName = document.createElement('div');
+    // const Progress = document.createElement('div');
+    // const ProgressBar = document.createElement('div');
+    const containerPRo = document.createElement('div');
     const summary = document.createElement('div');
     
+    container.className = ('containerCity')
     containerTot.className = ('containerTot');
     contImg.className = ('contimg');
     contCity.className = ('contcity');
@@ -80,31 +83,43 @@ function createBox(){
     coordinate.className = ('coordinate');
     coolati.className = ('latitudine');
     coolongi.className = ('longitudine');
-    contBar.className = ('contScore');
-    scores.className = ('scores')
+
+    contBar.className = ('contbar');
+    // Progress.className = ('progress');
+    // ProgressBar.className = ('progress-bar');
+    barName.className = ('barname');
+    containerPRo.className = ('containerPRo');
+
+
     summary.className = ('summary');
     totscore.className = ('totscore')
     
     body.appendChild(container);
+
     container.appendChild(containerTot);
     containerTot.appendChild(contImg);
     containerTot.appendChild(contCity);
-    containerTot.appendChild(contBar);
-    contBar.appendChild(Progress)
-    contBar.appendChild(ProgressBar)
+    container.appendChild(contBar);
+
+    contBar.appendChild(barName)
+    contBar.appendChild(containerPRo)
+    // contBar.appendChild(Progress);
+    // Progress.appendChild(ProgressBar);
+
     container.appendChild(summary);
     contImg.appendChild(img);
     contCity.appendChild(city);
     contCity.appendChild(coordinate);
     coordinate.appendChild(coolati);
     coordinate.appendChild(coolongi); 
-    coordinate.appendChild(totscore)   
+    coordinate.appendChild(totscore);   
 
+    
 };
 
 let search = document.querySelector('#search');
 let cancel = document.querySelector('#canc');
-let input = document.querySelector('#city');
+let input = document.querySelector('#input');
 
 search.addEventListener('click', () => {
     generateContainer(input.value);
@@ -117,10 +132,16 @@ input.addEventListener('keyup', (event) => {
 });
 
 cancel.addEventListener('click', () => {
-    let input = document.querySelector('#city');
+    let input = document.querySelector('#input');
     input.value = '';
-    container.innerHTML= '';
+    resetContainer();
 });
+
+function resetContainer(){
+    let container = document.querySelector('.containerCity');
+    container.style.display = 'none';
+}
+
 
 function generateContainer(city){
 
@@ -172,10 +193,34 @@ function generateContainer(city){
                     document.querySelector('.city').innerHTML = cityName;
                     getimg(img);
                     getScores(scores, function (score) {
-                    // io gli passo scores e una call back di score 
+                        const nome = score.map(elemento=> elemento.name)
+                        const scoreElement = score.map(elemento=> elemento.score_out_of_10);
+
+                        let output = '';
+
+                        nome.forEach(element => {
+                            output += element + '<br>' ;
+                        });
+
+                        document.querySelector('.barname').innerHTML = output;
+
+                        scoreElement.forEach(element => {
+
+                            const Progress = document.createElement('div');
+                            const ProgressBar = document.createElement('div');
+
+                            Progress.className = ('progress');
+                            ProgressBar.className = ('progress-bar');
+
+
+                            document.querySelector('.containerPRo').appendChild(Progress);
+                            Progress.appendChild(ProgressBar);
+
+                            Progress.innerHTML += element;
+                            
+                        });
                     
-                    
-                    
+                    });
                 })
                 .catch(error =>{
                     console.error('si è verificato un errore durante la richiesta :', error.message)
@@ -193,5 +238,5 @@ function generateContainer(city){
     .catch(error =>{
         console.error('si è verificato un errore durante la richiesta :', error.message)
     });
-    });
+    
 };

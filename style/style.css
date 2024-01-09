@@ -22,68 +22,42 @@ body{
     flex-direction: column;
     gap: 10px;
 }
-
 .container{
-    width: 450px;
-    height: 40px;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    opacity: 0.9;
-    box-shadow: 3px 3px 3px black
+    max-width: 500px !important;
 }
 
 .box{
     display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
     height: 100%;
-}
-
-.navBar{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-left: 1rem;
-}
-.navBar input{
-    border: 1px solid black;
+    background-color: white;
+    opacity: 0.9;
     border-radius: 8px;
-    width: 300px;
-    height: 30px;
-    padding-left: 10px;
-}
-.navBar input:hover{
-    background-color: lightgray;
-}
-.boxButton{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
+    border: black;
+    box-shadow: 3px 3px 3px black;
 }
 
-.boxButton button{
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
+#search{
+    color: black;
 }
+#search:hover{
+   background-color: #1E88E5;
+   text-decoration: black;
+}
+#canc:hover{
+    background-color: #1E88E5;
+    text-decoration: black;
+    border-radius: 0px 8px 8px 0px;
+ }
 
-.boxButton button:hover{
-    box-shadow: 1px 1px 3px black;
-    background-color: lightgray;
+#canc{
+    color: black;
 }
 
 .containerCity{
+
     height: fit-content;
-    width: 800px;
+    width: 700px;
     background-color: white;
     opacity: 1.0;
     border-radius: 8px;
@@ -93,18 +67,19 @@ body{
     flex-direction: row;
     flex-wrap: wrap;
     padding: 3px;
+    justify-content: space-between;
     
 }
 
 .containerTot{
     display: flex;
-    flex-direction: row;
+    flex-direction: column-reverse;
     gap: 1rem;
 }
 
 .containerCity img{
     height: fit-content;
-    width: 200px;
+    width: 250px;
     border-radius: 8px;
 }
 
@@ -117,9 +92,24 @@ body{
 }
 
 .contText{
-    
     height: fit-content;
 }
 
+.contbar{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    
+}
+.containerPRo{
+    display: flex;
+    flex-direction: column;
+}
 
+.summary{
+    padding: 3px;
+    display: flex;
+    justify-content: center;
+    text-align: left;
+}
 

@@ -11,16 +11,37 @@
 <body>
         <div class="container">
             <div class="box">
-                <div class="navBar"><input type="text" id="city" placeholder="Inserisci nome di Città"></div>
-                <div class="boxButton">
-                    <div class="enter"><button id="search"><img src="img/search.png" ></button></div>
-                    <div class="surprice"><button><img src="img/home.png"></button></div>
-                    <div class="cancel"><button id="canc"><img src="img/cancel.png" ></button></div>
+                <div class="input-group">
+                    <input id="input" input="text" class="form-control" placeholder="Enter a City" aria-label="Recipient's username with two button addons">
+                    <button id="search"  class="btn btn-outline-secondary" type="button">Search</button>
+                    <button id="canc"  class="btn btn-outline-secondary" type="button">Cancel</button>
+                  </div>
                 </div>
             </div>
         </div>
 
-        <div class="containerCity" id="containerCity"></div>
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="..." class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card border-success mb-3" style="max-width: 540px;">
+            <div class="card-header bg-transparent border-success">Header</div>
+            <div class="card-body text-success">
+              <h5 class="card-title">Success card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-success">Footer</div>
+          </div>
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="js/main.js"></script>
