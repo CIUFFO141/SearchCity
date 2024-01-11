@@ -1,3 +1,22 @@
+function spinner () {
+    const spinner = document.createElement('div');
+    const span = document.createElement('span');
+
+    spinner.className = 'spinner-border text-warning';
+    span.className = 'visually-hidden';
+
+    spinner.setAttribute('role', 'status');
+
+    spinner.style.width = '3rem';
+    spinner.style.height = '3rem';
+
+    let box = document.querySelector('.Box-text');
+
+    box.appendChild(spinner);
+    spinner.appendChild(span);
+    
+};
+
 function getimg(url){
     let  options = { headers: {'Content-Type': 'application/json'}, mode: "cors" };
 
@@ -23,8 +42,20 @@ function backImg(url){
         return result.json();
     })
     .then(result => {
-        let img = result['photos'][0]['image']['mobile'];
-        document.getElementById('firstImg').src = img;
+        let imgSrc = result['photos'][0]['image']['mobile'];
+        let imgElement = document.getElementById('firstImg');
+        imgElement.src = imgSrc;
+        let firstCardElement = document.getElementById('FirstCard');
+        let secondCardElement = document.getElementById('secondCard');
+        let box = document.getElementById('boxText');
+
+        imgElement.addEventListener('load', (event) => {
+            console.log(event);
+            firstCardElement.style.display = 'flex';
+            secondCardElement.style.display = 'flex';
+            box.style.display = 'none';
+        })
+
     })
     .catch(error =>{
         console.error('si è verificato un errore durante la richiesta :', error.message)
@@ -70,7 +101,6 @@ function createBox(){
     const secondCard = document.createElement('div');
     const headerCard = document.createElement('div');
     const SecondBodyCard = document.createElement('div');
-    // const secodnTitleCard = document.createElement('h5');
     const secondTextCard =  document.createElement('div');
     const contScore = document.createElement('div');
     const footerCard = document.createElement('div');
@@ -87,7 +117,6 @@ function createBox(){
     body.appendChild(secondCard);
     secondCard.appendChild(headerCard);
     secondCard.appendChild(SecondBodyCard);
-    // SecondBodyCard.appendChild(secodnTitleCard);
     SecondBodyCard.appendChild(secondTextCard)
     secondCard.appendChild(footerCard);
     SecondBodyCard.appendChild(contScore)
@@ -107,15 +136,16 @@ function createBox(){
     secondTextCard.className = 'card-text';
     footerCard.className = 'card-footer bg-transparent border-dark';
 
+    firstCard.style.display = 'none';
     firstCard.style.maxWidth = '500px';
     firstCard.style.boxShadow = '3px 3px 3px black';
-    // firstCard.style.opacity = '0.9';
     firstCard.style.height = 'fit-content';
     firstImg.style.height = '170px';
     firstImg.style.width = '170px';
     firstImg.style.borderRadius = '8px';
     firstImg.style.margin = '5px';
 
+    firstCard.id = 'FirstCard';
     firstImg.id = 'firstImg';
     headerCard.id = 'header';
     footerCard.id = 'footerCard';
@@ -131,13 +161,11 @@ function createBox(){
     contScore.style.justifyContent = 'center';
 
     secondTextCard.style.display = 'flex';
-    // secondTextCard.style.minWidth = '200px';
     secondTextCard.style.flexDirection = 'column';
     
-
     secondCard.id = 'secondCard';
+    secondCard.style.display = 'none';
     secondCard.style.boxShadow = '3px 3px 3px black';
-    // secondCard.style.opacity = '0.9';
     secondCard.style.border = 'none';
     SecondBodyCard.id = 'secondBody';
     SecondBodyCard.style.display = 'flex';
@@ -151,17 +179,30 @@ let input = document.querySelector('#input');
 
 search.addEventListener('click', () => {
     generateContainer(input.value);
+    spinner();
+    box.style.display= 'none';
+
 });
 
 input.addEventListener('keyup', (event) => {
     if(event.key === 'Enter'){
         generateContainer(input.value);
+        spinner();
+        let box = document.getElementById('textBox');
+        box.style.display= 'none';
     }
 });
 
 cancel.addEventListener('click', () => {
-    let input = document.querySelector('#input');
+
     input.value = '';
+    let box = document.getElementById('boxText');
+    box.style.display= 'flex';
+    box.innerHTML = 'search again...';
+    let firstCardElement = document.getElementById('FirstCard');
+    let secondCardElement = document.getElementById('secondCard');
+    firstCardElement.style.display = 'none';
+    secondCardElement.style.display = 'none';
 
 });
 
@@ -213,12 +254,15 @@ function generateContainer(city){
                     document.getElementById('titleCard').innerHTML = cityName;
                     getimg(img);
                     getScores(scores, function (score) {
-                        console.log(score);
+
+                        const ScoreContainer = document.getElementById('Score');
+                        const ContText = document.getElementById('TextSecond');
+
+                        ContText.innerHTML = '';
+                        ScoreContainer.innerHTML = '';
 
                         const nome = score.map(elemento=> elemento.name);
                         const scoreElement = score.map(elemento=> elemento.score_out_of_10);
-
-                        const ContText = document.getElementById('TextSecond');
 
                         nome.forEach(element => {
                             const innertest = document.createElement('div');
@@ -226,7 +270,6 @@ function generateContainer(city){
                             ContText.appendChild(innertest);
                         });
 
-                        const ScoreContainer = document.getElementById('Score');
 
                         scoreElement.forEach((element) => {
                             
@@ -269,3 +312,5 @@ function generateContainer(city){
     });
     
 };
+
+

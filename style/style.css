@@ -16,7 +16,7 @@ html::-webkit-scrollbar-track{
 }
 html::-webkit-scrollbar-thumb{
     background-color: #FFCA28;
-    border-radius: 8px;
+    border-radius: 10px;
 }
 
 body{
@@ -50,8 +50,8 @@ body{
     box-shadow: 3px 3px 3px black;
 }
 
-#secondCard{
-    width: 500px !important;
+#secondBody{
+    gap: 10px;
 }
 
 #search{
@@ -92,3 +92,24 @@ body{
     display: flex;
 
 }
+
+.Box-text{
+    background-color: white;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: 3px 3px 3px black;
+    padding: 1rem;
+    text-align: center;
+}
+/* @media only screen and (min-width: 481px) and (max-width: 769px) {
+    body{
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+    }
+} */
+  
