@@ -47,7 +47,7 @@ body{
     background-color: white;
     border-radius: 8px;
     border: black;
-    box-shadow: 3px 3px 3px black;
+    box-shadow: 1px 1px 5px black;
 }
 
 #secondBody{
@@ -88,28 +88,60 @@ body{
     outline: none;
 }
 
-#secondText{
-    display: flex;
-
-}
-
-.Box-text{
+#boxText{
     background-color: white;
-    width: 200px;
-    height: 200px;
+    width: 50px;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 8px;
-    box-shadow: 3px 3px 3px black;
-    padding: 1rem;
-    text-align: center;
+    box-shadow: 1px 1px 5px black;
 }
-/* @media only screen and (min-width: 481px) and (max-width: 769px) {
-    body{
-        margin: 0;
-        padding: 0;
-        height: 100vh;
+
+.FirstCard{
+    display : none;
+    width : 75% ;
+    box-shadow : 1px 1px 5px black;
+    height : fit-content;
+    padding: 10px; 
+}
+.SecondCard{
+    display : none;
+    width : 75%;
+    box-shadow : 1px 1px 5px black;
+    height : fit-content;
+    border: none;
+    padding: 10px;
+}
+
+.firstImg{
+    height : 200px;
+    width : 200px;
+    border-radius : 8px;
+}
+#Score{
+    display : flex;
+    min-Width : 200px;
+    flex-direction : column;
+    gap : 8px;
+    justify-Content : center;
+}
+
+.contImg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width: 600px) {
+    #secondBody{
+        display: flex;
+        flex-direction: column;
     }
-} */
-  
+}

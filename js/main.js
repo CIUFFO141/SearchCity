@@ -1,4 +1,4 @@
-function spinner () {
+function generateSpinner () {
     const spinner = document.createElement('div');
     const span = document.createElement('span');
 
@@ -7,15 +7,41 @@ function spinner () {
 
     spinner.setAttribute('role', 'status');
 
-    spinner.style.width = '3rem';
-    spinner.style.height = '3rem';
+    spinner.style.width = '2rem';
+    spinner.style.height = '2rem';
 
     let box = document.querySelector('.Box-text');
 
     box.appendChild(spinner);
     spinner.appendChild(span);
-    
 };
+
+function showSpinner(){
+    let box = document.getElementById('boxText')
+    box.style.display= 'flex';
+
+    let first = document.getElementById('FirstCard');
+    let second = document.getElementById('SecondCard');
+
+    if( first && second ){
+       first.remove();
+       second.remove();
+    }
+}
+
+function hideSpinner(){
+    let box = document.getElementById('boxText')
+    box.style.display= 'none';
+
+    let first = document.getElementById('FirstCard');
+    let second = document.getElementById('SecondCard');
+
+    if( first && second ){
+       first.remove();
+       second.remove();
+    }
+}
+
 
 function getimg(url){
     let  options = { headers: {'Content-Type': 'application/json'}, mode: "cors" };
@@ -43,17 +69,16 @@ function backImg(url){
     })
     .then(result => {
         let imgSrc = result['photos'][0]['image']['mobile'];
-        let imgElement = document.getElementById('firstImg');
+        let imgElement = document.querySelector('.firstImg');
         imgElement.src = imgSrc;
-        let firstCardElement = document.getElementById('FirstCard');
-        let secondCardElement = document.getElementById('secondCard');
+        let firstCard = document.querySelector('.FirstCard');
+        let secondCard = document.querySelector('.SecondCard');
         let box = document.getElementById('boxText');
 
-        imgElement.addEventListener('load', (event) => {
-            console.log(event);
-            firstCardElement.style.display = 'flex';
-            secondCardElement.style.display = 'flex';
+        imgElement.addEventListener('load', () => {
             box.style.display = 'none';
+            firstCard.style.display = 'flex';
+            secondCard.style.display = 'flex';
         })
 
     })
@@ -95,7 +120,7 @@ function createBox(){
     const firstImg = document.createElement('img');
     const ContBodyCard = document.createElement('div');
     const FirstBodyCard = document.createElement('div');
-    const titleCard = document.createElement('h5');
+    const titleCard = document.createElement('h4');
     const firstTextCard = document.createElement('p');
 
     const secondCard = document.createElement('div');
@@ -121,32 +146,24 @@ function createBox(){
     secondCard.appendChild(footerCard);
     SecondBodyCard.appendChild(contScore)
 
-    firstCard.className = 'card mb-3'; 
+    firstCard.id = 'FirstCard';
+    secondCard.id = 'SecondCard';
+
+    firstCard.className = 'card mb-3 FirstCard'; 
     RowCard.className = 'row g-0'; 
-    contImg.className = 'col-md-4'; 
-    firstImg.className = 'img-fluid rounded-start';
+    contImg.className = 'col-md-4 contImg'; 
+    firstImg.className = 'img-fluid rounded-start firstImg';
     ContBodyCard.className = 'col-md-8'; 
     FirstBodyCard.className = 'card-body'; 
-    titleCard.className = 'card-title'; 
+    titleCard.className = 'card-title '; 
     firstTextCard.className = 'card-text'; 
 
-    secondCard.className = 'card border-dark mb-3'; 
+    secondCard.className = 'card border-dark mb-3 SecondCard'; 
     headerCard.className = 'card-header bg-transparent border-dark'; 
     SecondBodyCard.className = 'card-body text-dark';
     secondTextCard.className = 'card-text';
     footerCard.className = 'card-footer bg-transparent border-dark';
 
-    firstCard.style.display = 'none';
-    firstCard.style.maxWidth = '500px';
-    firstCard.style.boxShadow = '3px 3px 3px black';
-    firstCard.style.height = 'fit-content';
-    firstImg.style.height = '170px';
-    firstImg.style.width = '170px';
-    firstImg.style.borderRadius = '8px';
-    firstImg.style.margin = '5px';
-
-    firstCard.id = 'FirstCard';
-    firstImg.id = 'firstImg';
     headerCard.id = 'header';
     footerCard.id = 'footerCard';
     firstTextCard.id = 'summary';
@@ -154,19 +171,9 @@ function createBox(){
     secondTextCard.id = 'TextSecond';
     contScore.id = 'Score';
 
-    contScore.style.display = 'flex';
-    contScore.style.minWidth = '200px';
-    contScore.style.flexDirection = 'column';
-    contScore.style.gap = '8px';
-    contScore.style.justifyContent = 'center';
-
     secondTextCard.style.display = 'flex';
     secondTextCard.style.flexDirection = 'column';
     
-    secondCard.id = 'secondCard';
-    secondCard.style.display = 'none';
-    secondCard.style.boxShadow = '3px 3px 3px black';
-    secondCard.style.border = 'none';
     SecondBodyCard.id = 'secondBody';
     SecondBodyCard.style.display = 'flex';
     SecondBodyCard.style.justifyContent = 'space-between';
@@ -178,32 +185,31 @@ let cancel = document.querySelector('#canc');
 let input = document.querySelector('#input');
 
 search.addEventListener('click', () => {
+    showSpinner();
     generateContainer(input.value);
-    spinner();
-    box.style.display= 'none';
-
 });
 
 input.addEventListener('keyup', (event) => {
     if(event.key === 'Enter'){
+        showSpinner();
         generateContainer(input.value);
-        spinner();
-        let box = document.getElementById('textBox');
-        box.style.display= 'none';
     }
 });
 
+generateSpinner();
+hideSpinner();
+
 cancel.addEventListener('click', () => {
-
     input.value = '';
-    let box = document.getElementById('boxText');
-    box.style.display= 'flex';
-    box.innerHTML = 'search again...';
-    let firstCardElement = document.getElementById('FirstCard');
-    let secondCardElement = document.getElementById('secondCard');
-    firstCardElement.style.display = 'none';
-    secondCardElement.style.display = 'none';
+    hideSpinner();
 
+    let first = document.querySelector('firstCard');
+    let second = document.querySelector('secondCard');
+
+    if( first && second ){
+        first.remove();
+        second.remove();
+    }
 });
 
 function generateContainer(city){
@@ -211,7 +217,7 @@ function generateContainer(city){
     createBox();
 
     const url = 'https://api.teleport.org/api/' ;
-    const  options = { headers: {'Content-Type': 'application/json'}, mode: "cors" };
+    const  options = { headers: {'Content-Type': 'application/json'} };
 
     fetch(url, options )
     .then(result=> {
@@ -312,5 +318,3 @@ function generateContainer(city){
     });
     
 };
-
-
