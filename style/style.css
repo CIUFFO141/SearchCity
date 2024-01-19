@@ -21,7 +21,7 @@ html::-webkit-scrollbar-thumb{
 
 body{
     font-family: 'Montserrat', sans-serif !important;
-    background-image: url(/img/sfondo.jpg);
+    background-image: url(../img/sfondo.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
