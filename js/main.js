@@ -227,6 +227,11 @@ function generateContainer(city){
 
     fetch(url, options )
     .then(result=> {
+
+        if (!result.ok) {
+            throw new Error(errorAlert);
+        }
+
         return result.json();
     })
     .then(result => {
