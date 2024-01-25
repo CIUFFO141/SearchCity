@@ -56,10 +56,14 @@ function getimg(url){
     })
     .catch(error =>{
         console.error('si è verificato un errore durante la richiesta :', error.message)
+        errorAlert( true, 'Errore nell\'ottenere immagine');
     })
 }
 
 function backImg(url){
+
+    let imgError = document.querySelector('.firstImgError');
+    imgError.innerHTML = '';
 
     let  options = { headers: {'Content-Type': 'application/json'}, mode: "cors" };
 
@@ -83,7 +87,8 @@ function backImg(url){
 
     })
     .catch(error =>{
-        console.error('si è verificato un errore durante la richiesta :', error.message)
+        console.error('si è verificato un errore durante la richiesta :', error.message);
+        errorAlert( true, 'Non è stato possibile caricare l\'immagine');
     })
 }
 
@@ -107,6 +112,7 @@ function getScores(url, callback){
     })
     .catch(error =>{
         console.error('si è verificato un errore durante la richiesta :', error.message)
+        errorAlert( true, 'Errore nell\'ottenere statistiche');
     })
 }
 
@@ -302,19 +308,43 @@ function generateContainer(city){
                 })
                 .catch(error =>{
                     console.error('si è verificato un errore durante la richiesta :', error.message)
+                    errorAlert( true, 'Errore nel quarto fetch');
                 })
             })
             .catch(error =>{
                 console.error('si è verificato un errore durante la richiesta :', error.message)
+                errorAlert( true, 'Errore nel terzo fetch');
             })
 
         })
         .catch(error =>{
             console.error('si è verificato un errore durante la richiesta :', error.message)
+            errorAlert( true, 'Errore nel secondo fetch');
         })
     })
     .catch(error =>{
         console.error('si è verificato un errore durante la richiesta :', error.message)
+        errorAlert( true, 'Errore nel primo fetch');
     });
     
 };
+
+
+function errorAlert( show , message = null ){
+
+    let errorBox = document.getElementById('error');
+
+    if( show ){
+        errorBox.style.opacity = 1;
+        errorBox.innerHTML = message;
+        setTimeout(() => {
+            errorAlert( false )
+        }, 3000);
+    }else{
+        errorBox.style.opacity = 0;
+        setTimeout(() => {
+            errorBox.innerHTML = '';
+        }, 600);
+    }
+
+}
