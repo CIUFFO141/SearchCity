@@ -52,6 +52,8 @@ function getimg(url){
     })
     .then(result => {
         let img = result['_links']['self']['href'];
+        if( !img ) { errorAlert('Errore'); return; }
+
         backImg(img);
     })
     .catch(error =>{
@@ -73,6 +75,8 @@ function backImg(url){
     })
     .then(result => {
         let imgSrc = result['photos'][0]['image']['mobile'];
+        if( !imgSrc ) { errorAlert('Errore'); return; }
+
         let imgElement = document.querySelector('.firstImg');
         imgElement.src = imgSrc;
         let firstCard = document.querySelector('.FirstCard');
@@ -100,8 +104,11 @@ function getScores(url, callback){
         return result.json();
     })
     .then(result => {
-        let summary = result['summary'];    
+        let summary = result['summary'];   
+        if( !summary ) { errorAlert('Errore'); return; }
+ 
         let CitySCore = result['teleport_city_score'];
+        if( !CitySCore ) { errorAlert('Errore'); return; }
 
         document.getElementById('footerCard').innerHTML = 'Total Score : ' +  Math.round(CitySCore);
         document.getElementById('summary').innerHTML = summary;
@@ -227,15 +234,13 @@ function generateContainer(city){
 
     fetch(url, options )
     .then(result=> {
-
-        if (!result.ok) {
-            throw new Error(errorAlert);
-        }
-
         return result.json();
     })
     .then(result => {
+
         let data = result['_links']['city:search']['href'];
+        if( !data ) { errorAlert('Errore'); return; }
+
         data = data.replace(/{.*}/,'');
         data = data + "?search=" + city + "&limit=1";
 
@@ -245,6 +250,7 @@ function generateContainer(city){
         })
         .then(result => {
             let cityData = result['_embedded']['city:search-results'][0]['_links']['city:item']['href']
+            if( !cityData ) { errorAlert('Errore'); return; }
             
             
             fetch(cityData, options)
@@ -253,9 +259,14 @@ function generateContainer(city){
             })
             .then(result => {
                 let urbanData = result['_links']['city:urban_area']['href'];
-                
-                let coolatiData = result['location']['latlon']['latitude'];      
+                if( !urbanData ) { errorAlert('Errore'); return; }
+
+                let coolatiData = result['location']['latlon']['latitude'];    
+                if( !coolatiData ) { errorAlert('Errore'); return; }
+
                 let coolongiData =  result['location']['latlon']['longitude'];
+                if( !coolongiData ) { errorAlert('Errore'); return; }
+
 
                 document.getElementById('header').innerHTML = 'Latitude ' + coolatiData + ' Longitudine ' + coolongiData;
                 
@@ -265,8 +276,14 @@ function generateContainer(city){
                 })
                 .then(result => {
                     let img = result['_links']['ua:images']['href'];
-                    let scores = result['_links']['ua:scores']['href'];  
+                    if( !img ) { errorAlert('Errore'); return; }
+
+                    let scores = result['_links']['ua:scores']['href']; 
+                    if( !scores ) { errorAlert('Errore'); return; } 
+
                     let cityName = result['full_name'];
+                    if( !cityName ) { errorAlert('Errore'); return; }
+
 
                     document.getElementById('titleCard').innerHTML = cityName;
                     getimg(img);
